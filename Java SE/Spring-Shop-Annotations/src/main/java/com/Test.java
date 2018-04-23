@@ -16,8 +16,8 @@ public class Test {
 
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-		// --------------------------------------------------
-		BillingImpl bill = ac.getBean("bill", BillingImpl.class);
+		/*// --------------------------------------------------
+		BillingImpl bill = ac.getBean(BillingImpl.class);
 		
 		double total = bill.getCartTotal(cart1);
 		// --------------------------------------------------
@@ -26,7 +26,7 @@ public class Test {
 
 		// Second customer
 		total = bill.getCartTotal(cart2);
-		System.out.println("Cart2 Total is " + total);
+		System.out.println("Cart2 Total is " + total);*/
 
 	}
 

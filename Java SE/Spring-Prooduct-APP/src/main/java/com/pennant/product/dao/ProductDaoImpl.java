@@ -8,6 +8,8 @@ import com.pennant.product.model.Product;
 
 @Repository("prodDao")
 public class ProductDaoImpl implements ProductDao {
+	
+	private List<Product> listprods;
 
 	public void saveProduct(Product prod) {
 		System.out.println("Product Dao: " + prod.getProdNamee() + " Saved");
