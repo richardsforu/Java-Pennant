@@ -31,6 +31,7 @@ public class ProdServiceImpl {
 	public ProductImpl getProduct() {
 		System.out.println("--- get Product Method");
 		setEmpName(env.getProperty("empName"));
+		//System.out.println(env.s);
 		// System.out.println("Name: "+env.getProperty("empName"));
 		return prodImpl;
 	}
