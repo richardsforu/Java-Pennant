@@ -14,10 +14,15 @@ public interface EmployeeDao {
 	public List<Employee> listAll();
 
 	public Map<String, Object> countRecords();
-	
+
 	public Map<String, Object> getEmployeeById(int empId);
-	
+
 	public List<Map<String, Object>> getEmpData();
-	
+
+	public void getEmployees_V1();
+
+	public Employee getEmployee_V2(int empId);
+
+	public List<Employee> getEmployees_V3();
 
 }

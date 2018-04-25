@@ -45,4 +45,20 @@ public  class EmployeeServiceImpl implements EmployeeService {
 		return empDao.getEmpData();
 	}
 
+	// RowCallBackHandler demo method
+	public void getEmployees_V1() {
+		empDao.getEmployees_V1();
+		
+	}
+
+	public Employee getEmployee_V2(int empId) {
+		// TODO Auto-generated method stub
+		return empDao.getEmployee_V2(empId);
+	}
+
+	public List<Employee> getEmployees_V3() {
+		// TODO Auto-generated method stub
+		return empDao.getEmployees_V3();
+	}
+
 }
