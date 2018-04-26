@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,8 +15,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.pennant.emp.model.Employee;
 
@@ -30,6 +31,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	public void saveEmployee(Employee emp) {
 
+		jdbc.update("insert into employee values(?,?,?)", emp.getEmpId(), emp.getEmpName(), emp.getSalary());
+		System.out.println("Dao: " + emp.getEmpName() + " Saved to DB");
 	}
 
 	public Employee findEmployee(int empId) {
@@ -47,8 +50,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	}
 
-	
-	
 	public List<Map<String, Object>> getEmpData() {
 		// TODO Auto-generated method stub
 		return jdbc.queryForList("select * from employee");
@@ -85,6 +86,24 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				return emps;
 			}
 		});
+	}
+
+	public void deleteEmployee(int empId) {
+		jdbc.update("delete from employee where empid=?", empId);
+		System.out.println("Dao: " + empId + " Deleted from DB");
+	}
+
+	public void updateEmployee(Employee newEmp) {
+
+		Employee emp = findEmployee(newEmp.getEmpId());
+
+		if (emp.getEmpId() != newEmp.getEmpId()) {
+			throw new RuntimeException();
+		}
+		jdbc.update("update employee set empname=?,salary=? where empid=?", newEmp.getEmpName(), newEmp.getSalary(),
+				newEmp.getEmpId());
+		System.out.println("Dao: " + newEmp.getEmpName() + " Updated to Db");
+
 	}
 
 }// end of Dao class
