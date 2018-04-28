@@ -7,30 +7,32 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-	<context:annotation-config />
-	<context:component-scan
-		base-package="com.pennant.emp.dao,com.pennant.emp.service,com.pennant.emp.aop" />
-	<tx:annotation-driven />
+<!-- This xml is not in use. This application is configured with Java based annotaion with @Configuration -->
 
-	<!-- don't forget the DataSource -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-		<property name="username" value="scott" />
-		<property name="password" value="tiger" />
-	</bean>
+<!-- 	<context:annotation-config /> -->
+<!-- 	<context:component-scan -->
+<!-- 		base-package="com.pennant.emp.dao,com.pennant.emp.service,com.pennant.emp.aop" /> -->
+<!-- 	<tx:annotation-driven /> -->
+
+<!-- 	don't forget the DataSource --> 
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" -->
+<!-- 		destroy-method="close"> -->
+<!-- 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" /> -->
+<!-- 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" /> -->
+<!-- 		<property name="username" value="scott" /> -->
+<!-- 		<property name="password" value="tiger" /> -->
+<!-- 	</bean> -->
 
 
-	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<!-- (this dependency is defined somewhere else) -->
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+<!-- 	<bean id="txManager" -->
+<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+<!-- 		<!-- (this dependency is defined somewhere else) --> 
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 	</bean> -->
 	
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-	<property name="dataSource" ref="dataSource"/>
-	</bean>
+<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 	<property name="dataSource" ref="dataSource"/> -->
+<!-- 	</bean> -->
 
 
 

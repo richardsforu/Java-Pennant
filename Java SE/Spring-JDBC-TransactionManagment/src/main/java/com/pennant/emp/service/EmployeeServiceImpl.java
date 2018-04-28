@@ -14,7 +14,6 @@ import com.pennant.emp.dao.EmployeeDao;
 import com.pennant.emp.model.Employee;
 
 @Service
-@EnableTransactionManagement
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
@@ -22,11 +21,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private PlatformTransactionManager pm;
 
-	@Transactional(propagation=Propagation.SUPPORTS)
+	@Transactional
 	public void transactionTest() {
 
-		empDao.saveEmployee(new Employee(45, "Tx Tests", 346384));
-		empDao.deleteEmployee(44);
+		empDao.saveEmployee(new Employee(47, "Tx Tests", 346384));
+		empDao.deleteEmployee(46);
 		empDao.updateEmployee(new Employee(401, "Tx-Working-1", 844865));
 
 	}

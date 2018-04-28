@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 @Configuration
-@ComponentScans(value = { @ComponentScan("com.pennant.emp.service"), @ComponentScan("com.pennant.emp.dao") , @ComponentScan("com.pennant.emp.aop")})
+@ComponentScans(value = { @ComponentScan("com.pennant.emp.service"), @ComponentScan("com.pennant.emp.dao")})
 @PropertySource(value = "classpath:db.properties")
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
@@ -27,6 +27,9 @@ public class AppConfig implements TransactionManagementConfigurer {
 
 	@Bean
 	public DriverManagerDataSource getDataSource() {
+		
+		
+		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("db.driver"));
 		dataSource.setUrl(env.getProperty("db.url"));
@@ -46,15 +49,14 @@ public class AppConfig implements TransactionManagementConfigurer {
 
 	@Bean
 	public JdbcTemplate getJdbcTemplate() {
-		JdbcTemplate jt = new JdbcTemplate();
-		jt.setDataSource(getDataSource());
-		// jt.
+		JdbcTemplate jt = new JdbcTemplate(getDataSource());
+		//jt.setDataSource(getDataSource());
 		return jt;
 	}
 
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-		transactionManager.setDataSource(getDataSource());
+		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(getDataSource());
+		//transactionManager.setDataSource(getDataSource());
 		return transactionManager;
 	}
 
