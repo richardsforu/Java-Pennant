@@ -25,6 +25,7 @@ public class AppConfig implements TransactionManagementConfigurer {
 	@Autowired
 	private Environment env;
 
+	@Bean
 	public DriverManagerDataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("db.driver"));
