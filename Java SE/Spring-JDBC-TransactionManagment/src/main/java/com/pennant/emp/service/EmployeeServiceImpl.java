@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,17 +14,20 @@ import com.pennant.emp.dao.EmployeeDao;
 import com.pennant.emp.model.Employee;
 
 @Service
+@EnableTransactionManagement
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeDao empDao;
+	@Autowired
+	private PlatformTransactionManager pm;
 
-	@Transactional
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public void transactionTest() {
 
-		empDao.saveEmployee(new Employee(27, "Prashi-New", 346384));
-		empDao.deleteEmployee(26);
-		empDao.updateEmployee(new Employee(120, "New James", 844865));
+		empDao.saveEmployee(new Employee(45, "Tx Tests", 346384));
+		empDao.deleteEmployee(44);
+		empDao.updateEmployee(new Employee(401, "Tx-Working-1", 844865));
 
 	}
 

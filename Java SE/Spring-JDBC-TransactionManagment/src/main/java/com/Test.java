@@ -1,11 +1,8 @@
 package com;
 
-import java.util.List;
-import java.util.Map;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.pennant.emp.config.AppConfig;
 import com.pennant.emp.model.Employee;
 import com.pennant.emp.service.EmployeeService;
 
@@ -13,8 +10,8 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
-		// ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
+		//AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+		 ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
 		EmployeeService es = ac.getBean(EmployeeService.class);
 
 		Employee emp = new Employee();
