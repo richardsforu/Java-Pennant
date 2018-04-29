@@ -1,0 +1,94 @@
+
+-> Table Level PK
+
+create table employee(
+empid varchar2(20),
+empname varchar2(20),
+salary number(10),
+constraint employee_empid_pk primary key(empid)
+)
+
+--------------------------------------------------------
+create table employee(
+empid varchar2(20),
+empname varchar2(20),
+salary number(10)
+)
+
+-> Adding a primary key to existing table
+alter table employee add constraint
+employee_empid_pk primary key(empid
+)
+
+-> add new Coloumn to an exiting table
+
+alter table employee add
+ deptid varchar2(20)
+
+
+
+-> Remove primery key from existing table
+
+alter table employee drop
+constraint employee_empid_pk
+
+
+-> Creaate Department tabke
+
+create table department(
+deptid varchar2(20),
+deptname varchar2(20),
+location varchar2(20)
+)
+
+-> add pk to department table
+
+alter table DEPARTMENT add constraint
+department_deptid_pk primary key(deptid
+)
+
+insert into employee values('&empid','&empname',&salary)
+
+--> Add Foreignn key to employee table
+alter table employee ADD constraint
+department_deptid_fk foreign key(deptid) 
+references DEPARTMENT
+
+create table txn_details(
+userid number(10),
+txnid number(10)
+)
+
+--> composit primary key
+alter table txn_details add constraint
+txn_details_userid primary key(userid,txnid)
+
+
+ select
+        department.deptId,
+        department.deptName,
+        employee.empId,
+        employee.empName,
+        employee.salary 
+    from
+        Department department 
+    left outer join
+        detpDetails
+            on department.deptId=detpDetails.deptId 
+    left outer join
+        Employee employee 
+            on detpDetails.empId=employee.empId 
+    where
+        department.deptId=10000
+
+
+
+
+
+
+
+
+
+
+
+
